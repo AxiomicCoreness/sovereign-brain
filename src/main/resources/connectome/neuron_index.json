@@ -1,0 +1,11 @@
+{
+  "source": "hemibrain (synthetic subset)",
+  "neuron_count": 144,
+  "index_map": {
+    "0": "FB2B",
+    "1": "EPG",
+    "2": "PEN_a",
+    "3": "PEN_b"
+  },
+  "notes": "Synthetic labels only. Not a hemibrain dump."
+}
