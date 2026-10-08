@@ -1,0 +1,14 @@
+slot: luminara
+version: 1.0.0
+commander: CLARKE_YOURSA_TEE
+sovereign_id: H6VSH3/LUMERIS
+phase_lock_degrees: 202.6
+north_star_hz: 71.975
+blue_ice_hz: 29.115
+symmetry_group: "O-G2"
+mode_equation: "N_mode(tau) = exp(-phi^{-5}*tau) * (Psi_5 + phi^{-6}*Psi_6 + phi^{-8}*Psi_8) * O-G2"
+anchor:
+  name: WASP-107b
+  value: "phi^9 approx 76.013"
+sealed: false
+note: "label file only; no seal_sha3_256 computed"

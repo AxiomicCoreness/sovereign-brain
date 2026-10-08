@@ -1,0 +1,35 @@
+# Java
+*.class
+*.jar
+*.war
+*.ear
+target/
+build/
+out/
+.gradle/
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.settings/
+.classpath
+.project
+nbproject/private/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Simulation artifacts
+*.png
+*.csv.tmp
+*.log
+simulation-output/
+*.json.tmp
+
+# Sovereign state (local only)
+sovereign_state.json
+soul_array_declaration.json
