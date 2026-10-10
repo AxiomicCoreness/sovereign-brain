@@ -29,20 +29,38 @@ public final class SovereignAutomaton {
     }
 
     public void step(double dt, double externalCurrent) {
-        for (int i = 0; i < swarm.size(); i++) {
-            LIFRK4 neuron = swarm.get(i);
-            double[] byNeuron = connectome.currentsFrom(i, neuron.voltage(), dt);
-            double self = byNeuron[i];
-            neuron.step(timeSeconds, dt, t -> externalCurrent + self);
+        final int n = swarm.size();
+        final double[] inputTo = new double[n];
+
+        // Accumulate outgoing currents into targets (network, not self-loop)
+        for (int j = 0; j < n; j++) {
+            double vj = swarm.get(j).voltage();
+            double[] outOfJ = connectome.currentsFrom(j, vj, dt);
+            for (int k = 0; k < n; k++) {
+                inputTo[k] += outOfJ[k];
+            }
         }
+
+        for (int i = 0; i < n; i++) {
+            final double drive = externalCurrent + inputTo[i];
+            swarm.get(i).step(timeSeconds, dt, t -> drive);
+        }
+
         timeSeconds += dt;
-        if (timeSeconds >= 0.1 * (state.ordinal() + 1)) {
+        // Advance at most one phase per call; document dt ≤ 0.1 if multi-threshold needed
+        double threshold = 0.1 * (state.ordinal() + 1);
+        if (timeSeconds >= threshold) {
             SovereigntyState next = state.next();
             if (next != state) {
                 LOG.info("Sovereignty phase: {} -> {}", state, next);
                 state = next;
             }
         }
+    }
+
+    public String respond(String text, double dt, double external) {
+        step(dt, external);
+        return "phase=" + state + " t=" + timeSeconds;
     }
 
     public SovereigntyState state() { return state; }
