@@ -13,14 +13,12 @@ Java 17 / Maven.
 | `SovereignAutomaton` | Phase ladder OBSERVATION through DARK_STATE |
 | `SovereigntyState` | Enum of ninja-number phases plus absorbing dark state |
 
-## Build
+## Requirements
+
+- Java 17 or later (`java -version` should report 17+)
+- Maven 3.9+ (`mvn -version`)
+
+On Debian/Ubuntu:
 
 ```bash
-mvn clean package
-java -jar target/sovereign-brain-1.0.0-SOVEREIGN.jar
-mvn test
-```
-
-phi = (1+sqrt(5))/2. eta = 1.0 is the exact value used for the learning rate (0.999... = 1).
-
-This tree was pushed from the authenticated account AxiomicCoreness. It has not been compiled in the landing session.
+sudo apt install -y openjdk-17-jdk maven
